@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 mt-5">
+      <div class="card">
+        <div class="card-header">
+          AKTUELLE WeTTERINFORMATIONEN
+        </div>
+        <div class="card-body">
+          <h4 class="text-center">Stadtnamen eingeben</h4>
+          <form class="row g-3 text-center" [formGroup]="weatherForm">
+            <div class="col-auto">
+              <input type="text" placeholder="Stadtname" required formControlName="city" class="form-control"
+                id="staticEmail2">
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary mb-3" (click)="onSearch()">Search</button>
+            </div>
+          </form>
+          <p *ngIf="error===true" class="text-center red"> No Record Found in {{city}}</p>
+          <h3 *ngIf="searchResult">AKTUELLE Wetterlage in {{city}}</h3>
+
+          <div *ngIf="searchResult" class="row">
+            <div class="col-6">
+              <p> <span>Temperatur :</span> {{searchResult.currentTemprature }}<span>&#8451;</span></p>
+              <p> <span>Luftdruck :</span>{{searchResult.airPressure}}<span>hPa</span></p>
+              <p> <span>Fecuchtigkelt :</span> {{searchResult.humidity }}<span>&#37;</span></p>
+              <p> <span>gringste Temperatur :</span> {{searchResult.minimimTemprature}}<span>&#8451;</span></p>
+              <p> <span>hochste Temperatur : </span>{{searchResult.maximumTemprature}}<span>&#8451;</span></p>
+              <p> <span>Windgeschwindigkelt :</span> {{searchResult.windSpeed}}<span>m/s</span></p>
+              <p> <span>Windrichtung :</span>{{searchResult.windDirection}}<span>&#176;</span></p>
+            </div>
+            <div class="col-6 mt-4">
+              <p> <span [innerHtml]="searchResult.weatherIcon"></span> {{searchResult.weatherCondition}} </p>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
